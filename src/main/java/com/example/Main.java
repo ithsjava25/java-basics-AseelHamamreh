@@ -44,13 +44,15 @@ public class Main {
 
         calculateMeanMaxMinPrice(todaysList);
 
+        sort(todaysList);
+
 
 
     }
 
 
 
-    //  Function for calculate and display the mean, max, and min price for the current 24-hour period:
+    //  Function for calculating and displaying the mean, max, and min price for the current 24-hour period:
 
 
     public static void calculateMeanMaxMinPrice(List<ElpriserAPI.Elpris> pricesList){
@@ -75,9 +77,19 @@ public class Main {
 
         double mean = sum / pricesList.size();
         System.out.println("mean price = " + mean);
-        System.out.println("cheapest: " + cheapestHour);
-        System.out.println("expensivePrice: " + expensiveHour);
+        System.out.println("cheapest price hour: " + cheapestHour);
+        System.out.println("most expensive Price hour: " + expensiveHour);
 
+    }
+
+    // function for displaying prices in descending order:
+
+
+    public static void sort(List<ElpriserAPI.Elpris> pricesList){
+
+        pricesList.sort((a, b) -> Double.compare(b.sekPerKWh(), a.sekPerKWh()));
+
+        System.out.println("list after sorting: " + pricesList);
     }
 
 
