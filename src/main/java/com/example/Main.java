@@ -62,6 +62,12 @@ public class Main {
     //  Function for calculating and displaying the mean price:
 
     public static void findMeanPrice(List<ElpriserAPI.Elpris> pricesList){
+
+        if (pricesList == null || pricesList.isEmpty()) {
+            System.out.println("No prices to calculate.");
+            return;
+        }
+
         double sum=0;
         for (int i=0; i<pricesList.size(); i++){
             sum+=pricesList.get(i).sekPerKWh();
@@ -75,6 +81,12 @@ public class Main {
 
 
     public static void findMinPrice(List<ElpriserAPI.Elpris> pricesList){
+
+        if (pricesList == null || pricesList.isEmpty()) {
+            System.out.println("No prices to calculate.");
+            return;
+        }
+
         ElpriserAPI.Elpris min = pricesList.get(0);
 
         for (int i=0; i<pricesList.size(); i++) {
@@ -90,6 +102,12 @@ public class Main {
     //  Function for calculating and displaying the maximum price:
 
     public static void findMaxPrice(List<ElpriserAPI.Elpris> pricesList){
+
+        if (pricesList == null || pricesList.isEmpty()) {
+            System.out.println("No prices to calculate.");
+            return;
+        }
+
         ElpriserAPI.Elpris max = pricesList.get(0);
 
         for (int i=0; i<pricesList.size(); i++) {
@@ -108,6 +126,11 @@ public class Main {
 
     public static void sort(List<ElpriserAPI.Elpris> pricesList){
 
+        if (pricesList == null || pricesList.isEmpty()) {
+            System.out.println("No prices to calculate.");
+            return;
+        }
+
         List<ElpriserAPI.Elpris> sortedCopy = new ArrayList<>(pricesList);
 
         sortedCopy.sort((a, b) -> Double.compare(b.sekPerKWh(), a.sekPerKWh()));
@@ -120,6 +143,17 @@ public class Main {
     // Function for Determining optimal charging windows:
 
     public static void optimalWindow(List<ElpriserAPI.Elpris> prices, int duration) {
+
+        if (prices == null || prices.isEmpty()) {
+            System.out.println("No prices available!");
+            return;
+        }
+
+        if (prices.size() < duration) {
+            System.out.println("Not enough prices for this duration!");
+            return;
+        }
+
         if(duration == 2 || duration == 4 || duration == 8){
             // continue
         }
